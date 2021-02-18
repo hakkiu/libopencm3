@@ -16,9 +16,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-#ifndef LIBOPENCM3_MEMORYMAP_COMMON_H
-#define LIBOPENCM3_MEMORYMAP_COMMON_H
 #define RA2L1
 #if defined(RA2L1)
 #	include <libopencm3/ra/2l1/memorymap.h>
@@ -26,4 +23,3 @@
 #	error "Renesas family not defined."
 #endif
 
-#endif /* LIBOPENCM3_MEMORYMAP_COMMON_H */

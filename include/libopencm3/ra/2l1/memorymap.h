@@ -91,7 +91,7 @@
 #define CTSU_BASE           (0x40082000U)
 #define AGT0_BASE           (0x40084000U)
 #define AGT1_BASE           (0x40084100U)
-#define ACMPLP_BASE         (0X40085E00U)
-#define FLCN_BASE           (0X407EC000U)
+#define ACMPLP_BASE         (0x40085E00U)
+#define FLCN_BASE           (0x407EC000U)
 
 #endif

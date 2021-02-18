@@ -1,7 +1,5 @@
 #include <libopencm3/ra/gpio.h>
 
-static inline 
-
 void gpio_set(uint32_t gpioport, uint16_t gpios){
     PORT_PCNTR3(gpioport) = gpios;
 }
@@ -9,10 +7,7 @@ void gpio_clear(uint32_t gpioport, uint16_t gpios){
     PORT_PCNTR3(gpioport) = ( gpios << 16);
 }
 uint16_t gpio_get(uint32_t gpioport, uint16_t gpios){
-    return (uint16_t)GPIO_PCNTR2(gpioport) & gpios;
-}
-void gpio_toggle(uint32_t gpioport, uint16_t gpios){
-
+    return (uint16_t)PORT_PCNTR2(gpioport) & gpios;
 }
 
 void gpio_mode_setup(uint32_t gpioport, uint8_t mode, uint8_t pull_up_down, uint16_t gpios){

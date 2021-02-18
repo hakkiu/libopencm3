@@ -49,8 +49,6 @@
 #define GPIOPIN15			(1 << 15)
 
 
-#define GPIO_MODE(n, mode)		((mode) << (2 * (n)))
-#define GPIO_MODE_MASK(n)		(0x3 << (2 * (n)))
 /** @defgroup gpio_mode GPIO Pin Direction and Analog/Digital Mode
 @ingroup gpio_defines
 @{*/

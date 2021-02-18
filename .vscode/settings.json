@@ -1,0 +1,16 @@
+{
+    "files.associations": {
+        "gpio.h": "c",
+        "common.h": "c",
+        "memorymap.h": "c",
+        "gpio_common.h": "c",
+        "gpio_common_hglg.h": "c",
+        "mstp.h": "c",
+        "sci.h": "c",
+        "sysc.h": "c",
+        "gpio_common_all.h": "c",
+        "crc.h": "c",
+        "crc_v2.h": "c",
+        "iwdg.h": "c"
+    }
+}
