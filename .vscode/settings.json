@@ -11,6 +11,8 @@
         "gpio_common_all.h": "c",
         "crc.h": "c",
         "crc_v2.h": "c",
-        "iwdg.h": "c"
+        "iwdg.h": "c",
+        "adc.h": "c",
+        "adc_common_v2.h": "c"
     }
 }

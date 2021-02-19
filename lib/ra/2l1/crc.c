@@ -49,7 +49,7 @@ uint32_t crc_calculate(uint32_t data)
 
 uint32_t crc_calculate_block(uint32_t *datap, uint32_t size)
 {
-	int i;
+	uint32_t i;
 	uint8_t poly = CRC_CRCCR0 & CRC_CRCCR0_GPS;
 	switch (poly)
 	{
