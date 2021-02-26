@@ -40,8 +40,7 @@ void timer_set_prescaler(uint32_t timer_peripheral, uint32_t value);
 void timer_clear_flag(uint32_t timer_peripheral, uint32_t flag);
 void timer_continuous_mode(uint32_t timer_peripheral);
 void timer_set_counter(uint32_t timer_peripheral, uint32_t count);
-void timer_set_mode(uint32_t timer_peripheral, uint32_t clock_div,
-		    uint32_t alignment, uint32_t direction);
+void timer_set_mode(uint32_t timer_peripheral, uint32_t direction);
        
 void timer_set_dma_on_update_event(uint32_t timer_peripheral);     
 void timer_one_shot_mode(uint32_t timer_peripheral);

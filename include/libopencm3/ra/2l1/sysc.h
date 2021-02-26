@@ -38,9 +38,9 @@
 
 
 
-#define SYSC_PRCR_PRC0          (0x1 << 0)
-#define SYSC_PRCR_PRC1          (0x1 << 1)
-#define SYSC_PRCR_PRC3          (0x1 << 3)
+#define SYSC_PRCR_PRC0          (1 << 0)
+#define SYSC_PRCR_PRC1          (1 << 1)
+#define SYSC_PRCR_PRC3          (1 << 3)
 #define SYSC_PRCR_PRKEY         (0xA5 << 8)
 
 
@@ -67,10 +67,10 @@
 
 
 #define SYSC_OSCSF_HOCOSF            0x1
-#define SYSC_OSCSF_MOSCSF            (0x1 << 3)
+#define SYSC_OSCSF_MOSCSF            (1 << 3)
 
 #define SYSC_OSTDCR_OSTDIE            0x1
-#define SYSC_OSTDCR_OSTDE             (0x1 << 7)
+#define SYSC_OSTDCR_OSTDE             (1 << 7)
 
 
 #define SYSC_OSTDSR_OSTDF               0x1
@@ -88,8 +88,8 @@
 #define SYSC_MOSCWTCR_MSTS_262144       0x9
 
 
-#define SYSC_MOMCR_MODRV1           (0x1 << 3)
-#define SYSC_MOMCR_MOSEL            (0x1 << 6)
+#define SYSC_MOMCR_MODRV1           (1 << 3)
+#define SYSC_MOMCR_MOSEL            (1 << 6)
 
 
 #define SYSC_SOMCR_SODRV_NM          0x0
@@ -119,7 +119,7 @@
 #define SYSC_CKOCR_CKODIV_DIV64          0x6
 #define SYSC_CKOCR_CKODIV_DIV128         0x7
 
-#define SYSC_CKOCR_CKOEN                (0x1 << 7)
+#define SYSC_CKOCR_CKOEN                (1 << 7)
 
 #define SYSC_OPCCR_OPCM               (1 << 0)
 #define SYSC_OPCCR_OPCMTSF            (1 << 4)

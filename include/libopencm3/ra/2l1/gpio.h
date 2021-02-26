@@ -21,7 +21,7 @@
 #include <libopencm3/cm3/common.h>
 #include <libopencm3/ra/memorymap.h>
 
-#define GPIO0	(1 << 0))
+#define GPIO0	(1 << 0)
 #define GPIO1	(1 << 1)
 #define GPIO2	(1 << 2)
 #define GPIO3	(1 << 3)
@@ -60,15 +60,15 @@
 #define GPIO_PUPD_NONE			0x0
 #define GPIO_PUPD_PULLUP		0x1
 
-#define PORT_PmnPFS_PODR          (0x1u << 0)
-#define PORT_PmnPFS_PIDR          (0x1u << 1)
-#define PORT_PmnPFS_PDR	          (0x1u << 2)
-#define PORT_PmnPFS_NCODR         (0x1u << 6)
-#define PORT_PmnPFS_EOFR          (0x1u << 12)
-#define PORT_PmnPFS_ISEL          (0x1u << 14)
-#define PORT_PmnPFS_ASEL          (0x1u << 15)
-#define PORT_PmnPFS_PMR 	      (0x1u << 16)
-#define PORT_PmnPFS_PSEL          (0x1u << 24)
+#define PORT_PmnPFS_PODR          (1 << 0)
+#define PORT_PmnPFS_PIDR          (1 << 1)
+#define PORT_PmnPFS_PDR	          (1 << 2)
+#define PORT_PmnPFS_NCODR         (1 << 6)
+#define PORT_PmnPFS_EOFR          (1 << 12)
+#define PORT_PmnPFS_ISEL          (1 << 14)
+#define PORT_PmnPFS_ASEL          (1 << 15)
+#define PORT_PmnPFS_PMR 	      (1 << 16)
+#define PORT_PmnPFS_PSEL          (1 << 24)
 
 #define PORT_PCNTR1(port)			MMIO32(port + 0x00)
 #define PORT_PCNTR2(port)			MMIO32(port + 0x04)
@@ -83,8 +83,8 @@
 #define PORT_PmnPFS_PCR(value)      	((value) << PORT_PmnPFS_PCR_POS)
 /*************************************************************************************************/
 
-#define PORT_PWPR_PFSWE				(0x1U << 6)
-#define PORT_PWPR_BOWI				(0x1U << 7)
+#define PORT_PWPR_PFSWE				(1 << 6)
+#define PORT_PWPR_BOWI				(1 << 7)
 
 /*************************************************************************************************/
 #define PORT_PmnPFS_PSEL_POS        	(24)

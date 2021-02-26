@@ -19,12 +19,12 @@
 #define CRC_CRCCR0_GPS_CRC_32           0x04
 #define CRC_CRCCR0_GPS_CRC_32C          0x05
 
-#define CRC_CRCCR0_LMS                  (0x01 << 6)
-#define CRC_CRCCR0_DORCLR               (0x01 << 7)
+#define CRC_CRCCR0_LMS                  (1 << 6)
+#define CRC_CRCCR0_DORCLR               (1 << 7)
 
 ///////////
-#define CRC_CRCCR1_CRCSWR               (0x01 << 6)
-#define CRC_CRCCR1_CRCSEN               (0x01 << 7)
+#define CRC_CRCCR1_CRCSWR               (1 << 6)
+#define CRC_CRCCR1_CRCSEN               (1 << 7)
 
 
 
