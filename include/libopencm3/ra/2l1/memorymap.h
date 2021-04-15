@@ -28,7 +28,7 @@
 
 /* Memory map for all buses */
 #define FLASH_BASE          (0x00000000U)
-#define MPU_BASE            (0x40000000U)
+#define MPU_BASE_            (0x40000000U)
 
 
 #define SRAM_BASE           (0x40002000U)

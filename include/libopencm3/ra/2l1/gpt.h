@@ -47,6 +47,10 @@ void timer_one_shot_mode(uint32_t timer_peripheral);
 void timer_enable_update_event(uint32_t timer_peripheral);
 void timer_update_on_overflow(uint32_t timer_peripheral);
 void timer_disable_preload(uint32_t timer_peripheral);
+
+
+void timer_set_buffer_value(uint32_t timer_peripheral, uint32_t value);
+
 END_DECLS
 
 

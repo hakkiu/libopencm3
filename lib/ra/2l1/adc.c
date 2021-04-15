@@ -37,6 +37,7 @@ void adc_power_on(uint32_t adc)
 }
 bool adc_is_power_on(uint32_t adc)
 {
+    return false;
 }
 void adc_power_off_async(uint32_t adc)
 {
@@ -48,7 +49,7 @@ void adc_power_off(uint32_t adc)
 }
 bool adc_is_power_off(uint32_t adc)
 {
-
+    return false;
 }
 void adc_enable_dma(uint32_t adc)
 {

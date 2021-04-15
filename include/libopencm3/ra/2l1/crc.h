@@ -34,9 +34,9 @@ void crc_reset(void);
 uint32_t crc_calculate(uint32_t data);
 uint32_t crc_calculate_block(uint32_t *data, uint32_t size);
 
-void crc_set_polynomial(uint32_t polynomial);
+void crc_set_polynomial(uint8_t polynomial);
 void crc_set_initial(uint32_t initial);
-
+uint32_t crc_calculated_value_get(void);
 END_DECLS
 
 

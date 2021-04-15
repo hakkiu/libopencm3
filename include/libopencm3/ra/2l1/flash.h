@@ -48,6 +48,9 @@ void flash_erase_option_bytes(void);
 void flash_program_option_bytes(uint32_t address, uint16_t data);
 
 
+void flash_set_clock_frequency(uint8_t freq_in_mhz);
+uint16_t flash_get_error_status(void);
+
 END_DECLS
 
 #endif

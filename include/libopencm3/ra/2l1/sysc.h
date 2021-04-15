@@ -13,7 +13,7 @@
 #define SYSC_HOCOCR             MMIO8(SYSC_BASE + 0x036)
 #define SYSC_MOCOCR             MMIO8(SYSC_BASE + 0x038)
 #define SYSC_OSCSF              MMIO8(SYSC_BASE + 0x03C)
-#define SYSC_CKOCR              MMIO8(SYSC_BASE + 0x03C)
+#define SYSC_CKOCR              MMIO8(SYSC_BASE + 0x03E)
 #define SYSC_OSTDCR             MMIO8(SYSC_BASE + 0x040)
 #define SYSC_OSTDSR             MMIO8(SYSC_BASE + 0x041)
 #define SYSC_MOCOUTCR           MMIO8(SYSC_BASE + 0x061)
@@ -130,7 +130,11 @@
 //////////////
 
 
+BEGIN_DECLS
 
+void clock_init(void);
+
+END_DECLS
 
 
 

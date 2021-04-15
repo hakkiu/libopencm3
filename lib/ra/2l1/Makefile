@@ -33,7 +33,7 @@ TGT_CFLAGS      += $(DEBUG_FLAGS)
 TGT_CFLAGS	+= $(STANDARD_FLAGS)
 # ARFLAGS	= rcsv
 ARFLAGS		= rcs
-OBJS		+= adcife.o
+OBJS		+= crc.o gpio.o mstp.o sci.o sysc.o adc.o crc.o flash.o gpt.o iwdg.o 
 
 VPATH += ../../cm3:../common
 

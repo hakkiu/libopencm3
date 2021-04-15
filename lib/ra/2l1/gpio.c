@@ -1,25 +1,34 @@
 #include <libopencm3/ra/gpio.h>
 
+
+void gpio_port_protection_unlock(void)
+{
+    PORT_PWPR &= ~PORT_PWPR_BOWI; 
+    PORT_PWPR |= PORT_PWPR_PFSWE; 
+}
+void gpio_port_protection_lock(void)
+{
+    PORT_PWPR &= ~PORT_PWPR_PFSWE;
+    PORT_PWPR |= PORT_PWPR_BOWI;
+}
 void gpio_set(uint32_t gpioport, uint16_t gpios)
 {
     PORT_PCNTR3(gpioport) = gpios;
 }
 void gpio_clear(uint32_t gpioport, uint16_t gpios)
 {
-    PORT_PCNTR3(gpioport) = ( gpios << 16);
+    PORT_PCNTR3(gpioport) = (gpios << 16);
 }
 uint16_t gpio_get(uint32_t gpioport, uint16_t gpios)
 {
-    return (uint16_t)PORT_PCNTR2(gpioport) & gpios;
+    return (uint16_t)(PORT_PCNTR2(gpioport) & gpios);
 }
 
 void gpio_mode_setup(uint32_t gpioport, uint8_t mode, uint8_t pull_up_down, uint16_t gpios)
 {
     uint16_t i;
-    uint32_t pmnfs;
-
-    PORT_PWPR = (uint8_t) (~PORT_PWPR_BOWI | PORT_PWPR_PFSWE); // Port write protection
-    
+    uint32_t pmnfs = 0;
+   
     for (i = 0; i < 16; i++) {
         if (!((1 << i) & gpios)) {
             continue;
@@ -27,20 +36,21 @@ void gpio_mode_setup(uint32_t gpioport, uint8_t mode, uint8_t pull_up_down, uint
         switch (mode)
         {
         case GPIO_MODE_INPUT:
-            pmnfs = PORT_PmnPFS_PDR | PORT_PmnPFS_PCR(0);
+            pmnfs |= ~PORT_PmnPFS_PDR ;
             break;
         case GPIO_MODE_OUTPUT:
-            pmnfs = ~PORT_PmnPFS_PDR;
+            pmnfs = PORT_PmnPFS_PDR;
             break;
-        case GPIO_MODE_ANALOG: /*Kontrol et hatalı*/
-            pmnfs = (~PORT_PmnPFS_PMR | ~ PORT_PmnPFS_PCR(0) | ~PORT_PmnPFS_PDR | PORT_PmnPFS_ASEL );
+        case GPIO_MODE_ANALOG:
+            pmnfs = PORT_PmnPFS_ASEL;
+            pmnfs &= ~PORT_PmnPFS_PMR;
             break;
         case GPIO_MODE_AF:
-            pmnfs = ~PORT_PmnPFS_PMR;
+            pmnfs &= ~PORT_PmnPFS_PMR;
             break;
         }
 
-	    PORT_PMNPFS(gpioport, i) = pmnfs;
+	    PORT_PMNPFS(gpioport, i) = (pmnfs | pull_up_down);
 
     }
 }

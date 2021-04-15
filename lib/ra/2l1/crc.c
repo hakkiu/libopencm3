@@ -1,6 +1,6 @@
 #include <libopencm3/ra/2l1/crc.h>
 
-uint32_t crc_calculated_value_get(){
+uint32_t crc_calculated_value_get(void){
 	
 	uint32_t calculated_value = 0;
 

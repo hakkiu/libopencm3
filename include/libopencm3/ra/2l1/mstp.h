@@ -55,7 +55,7 @@ BEGIN_DECLS
 
 void rcc_periph_clock_enable(enum periph_clken clken);
 void rcc_periph_clock_disable(enum periph_clken clken);
-void rcc_periph_reset_pulse(enum rcc_periph_rst rst);
+//void rcc_periph_reset_pulse(enum rcc_periph_rst rst);
 
 END_DECLS
 

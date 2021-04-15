@@ -84,7 +84,8 @@
 
 #elif defined(PAC55XX)
 #       include <libopencm3/pac55xx/nvic.h>
-
+#elif defined(RA2L1)
+#       include <libopencm3/ra/2l1/nvic.h>
 #else
 #	warning"no interrupts defined for chipset; NVIC_IRQ_COUNT = 0"
 

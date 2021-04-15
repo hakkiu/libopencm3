@@ -67,7 +67,7 @@ void adc_set_right_aligned(uint32_t adc);
 void adc_enable_overrun_interrupt(uint32_t adc);
 void adc_set_continuous_conversion_mode(uint32_t adc);
 void adc_set_sample_time_on_all_channels(uint32_t adc, uint8_t time);
-
+void adc_set_single_conversion_mode(uint32_t adc);
 
 /*
 

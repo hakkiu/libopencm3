@@ -21,15 +21,14 @@
 #include <libopencm3/cm3/common.h>
 #include <libopencm3/ra/memorymap.h>
 
-#define GPIO0	(1 << 0)
-#define GPIO1	(1 << 1)
-#define GPIO2	(1 << 2)
-#define GPIO3	(1 << 3)
-#define GPIO4	(1 << 4)
-#define GPIO5	(1 << 5)
-#define GPIO6	(1 << 6)
-#define GPIO7	(1 << 7)
-#define GPIO8	(1 << 8)
+#define GPIO0	PORT0_BASE
+#define GPIO1	PORT1_BASE
+#define GPIO2	PORT2_BASE
+#define GPIO3	PORT3_BASE
+#define GPIO4	PORT4_BASE
+#define GPIO5	PORT5_BASE
+#define GPIO6	PORT6_BASE
+#define GPIO7	PORT7_BASE
 
 #define GPIOPIN0			(1 << 0)
 #define GPIOPIN1			(1 << 1)
@@ -57,8 +56,8 @@
 #define GPIO_MODE_AF			0x2
 #define GPIO_MODE_ANALOG		0x3
 
-#define GPIO_PUPD_NONE			0x0
-#define GPIO_PUPD_PULLUP		0x1
+#define GPIO_PUPD_NONE			(0 << 4)
+#define GPIO_PUPD_PULLUP		(1 << 4)
 
 #define PORT_PmnPFS_PODR          (1 << 0)
 #define PORT_PmnPFS_PIDR          (1 << 1)
@@ -68,19 +67,18 @@
 #define PORT_PmnPFS_ISEL          (1 << 14)
 #define PORT_PmnPFS_ASEL          (1 << 15)
 #define PORT_PmnPFS_PMR 	      (1 << 16)
-#define PORT_PmnPFS_PSEL          (1 << 24)
+//#define PORT_PmnPFS_PSEL          (1 << 24)
 
 #define PORT_PCNTR1(port)			MMIO32(port + 0x00)
 #define PORT_PCNTR2(port)			MMIO32(port + 0x04)
 #define PORT_PCNTR3(port)			MMIO32(port + 0x08)
 #define PORT_PCNTR4(port)			MMIO32(port + 0x0C)
-#define PORT_PMNPFS(port, pin)		MMIO32(PFS_BASE + (0x40 * ((port - PORT0_BASE) >> 5) & 0xF ) + (0x04 * (pin)))
+#define PORT_PMNPFS(port, pin)		MMIO32(PFS_BASE + (0x40 * ((((port) - PORT0_BASE) >> 5) & 0xF )) + (0x04 * (pin)))
 #define PORT_PWPR					MMIO8(PFS_BASE + 0x503)
 #define PORT_PRWCNTR				MMIO8(PFS_BASE + 0x50F)
 
 /*************************************************************************************************/
-#define PORT_PmnPFS_PCR_POS			(4)
-#define PORT_PmnPFS_PCR(value)      	((value) << PORT_PmnPFS_PCR_POS)
+#define PORT_PmnPFS_PCR      	(1 << 4)
 /*************************************************************************************************/
 
 #define PORT_PWPR_PFSWE				(1 << 6)
@@ -88,30 +86,31 @@
 
 /*************************************************************************************************/
 #define PORT_PmnPFS_PSEL_POS        	(24)
-#define PORT_PmnFS_PSEL_Msk					((0x1Fu << PORT_PmnPFS_PSEL_POS))
-#define PORT_PmnPFS_PSEL(value)      	((PORT_PmnFS_PSEL_Msk & ((value) << PORT_PmnPFS_PSEL_POS)))
-#define GPIO_AF_IO					PORT_PmnPFS_PSEL(0x00)
-#define GPIO_AF_DEBUG				PORT_PmnPFS_PSEL(0x00)
-#define GPIO_AF_AGT 				PORT_PmnPFS_PSEL(0x01)
-#define GPIO_AF_GPT0 				PORT_PmnPFS_PSEL(0x02)
-#define GPIO_AF_GPT1 				PORT_PmnPFS_PSEL(0x03)
-#define GPIO_AF_SCI0 				PORT_PmnPFS_PSEL(0x04)
-#define GPIO_AF_SCI1 				PORT_PmnPFS_PSEL(0x05)
-#define GPIO_AF_SPI 				PORT_PmnPFS_PSEL(0x06)
-#define GPIO_AF_IIC 				PORT_PmnPFS_PSEL(0x07)
-#define GPIO_AF_KEY	 				PORT_PmnPFS_PSEL(0x08)
-#define GPIO_AF_CLKOUT_COMP_RTC		PORT_PmnPFS_PSEL(0x09)
-#define GPIO_AF_CAC_AD_DAC 			PORT_PmnPFS_PSEL(0x0A)
-#define GPIO_AF_BUS 				PORT_PmnPFS_PSEL(0x0B)
-#define	GPIO_AF_CTSU 				PORT_PmnPFS_PSEL(0x0C)
-#define GPIO_AF_LCDC 				PORT_PmnPFS_PSEL(0x0D)
-#define GPIO_AF_DALI 				PORT_PmnPFS_PSEL(0x0E)
-#define GPIO_AF_CAN 				PORT_PmnPFS_PSEL(0x10)
+#define PORT_PmnFS_PSEL_Msk					(0x1F << PORT_PmnPFS_PSEL_POS)
+#define PORT_PmnPFS_PSEL(value)      	(((value) << PORT_PmnPFS_PSEL_POS) & PORT_PmnFS_PSEL_Msk )
+#define GPIO_AF_IO					(0x00)
+#define GPIO_AF_DEBUG				(0x00)
+#define GPIO_AF_AGT 				(0x01)
+#define GPIO_AF_GPT0 				(0x02)
+#define GPIO_AF_GPT1 				(0x03)
+#define GPIO_AF_SCI0 				(0x04)
+#define GPIO_AF_SCI1 				(0x05)
+#define GPIO_AF_SPI 				(0x06)
+#define GPIO_AF_IIC 				(0x07)
+#define GPIO_AF_KEY	 				(0x08)
+#define GPIO_AF_CLKOUT_COMP_RTC		(0x09)
+#define GPIO_AF_CAC_AD_DAC 			(0x0A)
+#define GPIO_AF_BUS 				(0x0B)
+#define	GPIO_AF_CTSU 				(0x0C)
+#define GPIO_AF_LCDC 				(0x0D)
+#define GPIO_AF_DALI 				(0x0E)
+#define GPIO_AF_CAN 				(0x10)
 
 /******************************************************************************************************/
 
 BEGIN_DECLS
-
+void gpio_port_protection_lock(void);
+void gpio_port_protection_unlock(void);
 void gpio_set(uint32_t gpioport, uint16_t gpios);
 void gpio_clear(uint32_t gpioport, uint16_t gpios);
 uint16_t gpio_get(uint32_t gpioport, uint16_t gpios);

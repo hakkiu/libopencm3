@@ -87,10 +87,10 @@ void timer_set_buffer_value(uint32_t timer_peripheral, uint32_t value)
     GPT_GTPBR(timer_peripheral) = value;
 }
 
-void timer_enable_irq(uint32_t timer_peripheral, uint32_t irq) // enable etme gibi bir olay yok
+/*void timer_enable_irq(uint32_t timer_peripheral, uint32_t irq) // enable etme gibi bir olay yok
 {
     
-}
-void timer_update_on_overflow(uint32_t timer_peripheral); // Overflow veya underflow durumda update yapıyor
-void timer_disable_preload(uint32_t timer_peripheral);
-void timer_set_dma_on_update_event(uint32_t timer_peripheral);  // dma olaylarına topluca bakılacak   
+}*/
+void timer_update_on_overflow(uint32_t timer_peripheral){} // Overflow veya underflow durumda update yapıyor
+void timer_disable_preload(uint32_t timer_peripheral){}
+void timer_set_dma_on_update_event(uint32_t timer_peripheral){}  // dma olaylarına topluca bakılacak   

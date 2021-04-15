@@ -41,9 +41,9 @@ void flash_lock(void)   // Code flash mode to read mode
 {
     FLASH_FPR = FLASH_FPR_UNLOCK;
 
-    FLASH_FPMCR = FLASH_FPMCR_READ_MODE
-    FLASH_FPMCR = (uint8_t) ~FLASH_FPMCR_READ_MODE
-    FLASH_FPMCR = FLASH_FPMCR_READ_MODE
+    FLASH_FPMCR = FLASH_FPMCR_READ_MODE;
+    FLASH_FPMCR = (uint8_t) ~FLASH_FPMCR_READ_MODE;
+    FLASH_FPMCR = FLASH_FPMCR_READ_MODE;
 
     FLASH_FENTRYR = FLASH_FENTRYR_READ_MODE;
 
@@ -56,9 +56,9 @@ void flash_unlock(void)     // Read mode to code flash
 
     FLASH_FENTRYR = FLASH_FENTRYR_CODEFLASH_PE_MODE;
 
-    FLASH_FPMCR = FLASH_FPMCR_CODEFLASH_PE_MODE
-    FLASH_FPMCR = (uint8_t) ~FLASH_FPMCR_CODEFLASH_PE_MODE
-    FLASH_FPMCR = FLASH_FPMCR_CODEFLASH_PE_MODE
+    FLASH_FPMCR = FLASH_FPMCR_CODEFLASH_PE_MODE;
+    FLASH_FPMCR = (uint8_t) ~FLASH_FPMCR_CODEFLASH_PE_MODE;
+    FLASH_FPMCR = FLASH_FPMCR_CODEFLASH_PE_MODE;
 
     /*should wait tDIS*/
 }
@@ -84,8 +84,8 @@ void flash_erase_page(uint32_t page_address)
 
     uint32_t end_addr_idx = page_address + (FLASH_CF_BLOCK_SIZE - 1U);
 
-    FLASH_FSARH = (uint16_t) ((start_addr >> 16));
-    FLASH_FSARL = (uint16_t) (start_addr);
+    FLASH_FSARH = (uint16_t) ((page_address >> 16)); /*yanlış kontrol et*/
+    FLASH_FSARL = (uint16_t) (page_address);
 
     FLASH_FEARH = ((end_addr_idx >> 16));
     FLASH_FEARL = (uint16_t) (end_addr_idx);
@@ -100,7 +100,7 @@ void flash_erase_page(uint32_t page_address)
 }
 void flash_set_clock_frequency(uint8_t freq_in_mhz)
 {
-    FLASH_FISR = (freq - 1) & 0x1F;
+    FLASH_FISR = (freq_in_mhz - 1) & 0x1F;
 }
 uint16_t flash_get_error_status()
 {
